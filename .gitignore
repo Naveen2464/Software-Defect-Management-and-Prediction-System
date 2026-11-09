@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest cache & test artifacts
+.pytest_cache/
+*.db-journal
+*.db-wal
+*.db-shm
+test_*.db
+
+# Temporary test scratch files
+scratch/
+tmp/
+*.tmp
+
+# Operating system files
+.DS_Store
+Thumbs.db
