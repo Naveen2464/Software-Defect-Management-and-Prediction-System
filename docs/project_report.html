@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Project Report - Software Defect Management and Prediction System</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.75;
+            color: #1e293b;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .report-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 60px 80px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .report-title {
+            font-family: 'Merriweather', serif;
+            font-size: 2.2rem;
+            color: #0f172a;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 12px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .section-title {
+            font-family: 'Merriweather', serif;
+            font-size: 1.45rem;
+            color: #1e3a8a;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-top: 45px;
+        }
+        .subsection-title {
+            font-size: 1.15rem;
+            color: #1e293b;
+            margin-top: 25px;
+        }
+        .report-para {
+            font-size: 1rem;
+            color: #334155;
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+        .divider {
+            border: 0;
+            height: 1px;
+            background: #cbd5e1;
+            margin: 40px 0;
+        }
+        .report-list {
+            margin-bottom: 20px;
+            padding-left: 28px;
+            color: #334155;
+        }
+        .report-list li {
+            margin-bottom: 8px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+        }
+        .report-table th, .report-table td {
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            text-align: left;
+        }
+        .report-table th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        .report-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        .code-block {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 16px 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.88rem;
+            font-family: Consolas, Monaco, "Courier New", monospace;
+        }
+        code {
+            background: #f1f5f9;
+            color: #be185d;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: Consolas, Monaco, "Courier New", monospace;
+        }
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        @media print {
+            body {
+                background: #ffffff;
+                padding: 0;
+            }
+            .report-wrapper {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .section-title {
+                page-break-before: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-wrapper">
+        <h1 class="report-title">ACADEMIC PROJECT REPORT</h1>
+
+<hr class="divider" />
+
+<h2 class="section-title">1. COVER PAGE</h2>
+
+<h3 class="subsection-title">PROJECT TITLE:</h3>
+<h1 class="report-title">SOFTWARE DEFECT MANAGEMENT AND PREDICTION SYSTEM</h1>
+
+<p class="report-para"><strong>Subject:</strong> Software Defect Management / Software Quality Engineering & Testing  
+<strong>Document Type:</strong> Final Academic Project Report  
+<strong>Implementation Technology:</strong> Python, Streamlit, SQLite, Plotly, Pandas  
+<strong>Development Environment:</strong> VS Code / Cross-Platform (Windows, Linux, Ubuntu)  
+<strong>Academic Submission Date:</strong> November 2026  
+<strong>Status:</strong> Completed, Fully Functional, and Formally Verified</p>
+
+<hr class="divider" />
+
+<h2 class="section-title">2. ABSTRACT</h2>
+
+<p class="report-para">In contemporary software engineering, defect management represents a critical lifecycle process governing software product reliability, maintainability, and total cost of quality (CoQ). Defect tracking systems in conventional practice frequently operate as passive issue repositories that merely document failures after they manifest, lacking proactive preventive intelligence and explainable defect prediction capabilities.</p>
+
+<p class="report-para">This project presents the <strong>Software Defect Management and Prediction System</strong>, an enterprise-grade, fully functional academic platform implementing the complete six-pillar defect management framework:
+1. <strong>Defect Prevention</strong> (pattern analysis, high-risk module isolation, and root-cause prevention guidelines);
+2. <strong>Defect Discovery</strong> (validated defect reporting, automated sequential ID generation <code>BUG-XXXX</code>, screenshot attachments);
+3. <strong>Defect Recording and Reporting</strong> (normalized relational persistence in SQLite, multi-dimensional search and filtering, dynamic CSV data export);
+4. <strong>Defect Classification</strong> (taxonomy adhering to IEEE 1044 / ISO 25010 standards across Severity, Priority, and Technical Failure Types);
+5. <strong>Defect Resolution</strong> (strict finite-state machine lifecycle governance: <code>NEW</code> ➔ <code>ASSIGNED</code> ➔ <code>IN PROGRESS</code> ➔ <code>FIXED</code> ➔ <code>RETESTING</code> ➔ <code>CLOSED</code>, alongside regression loops <code>RETESTING</code> ➔ <code>REOPENED</code> ➔ <code>IN PROGRESS</code>, backed by a complete audit trail);
+6. <strong>Defect Prediction</strong> (a transparent, explainable multi-factor risk-scoring algorithm computing module risk indices between 0 and 100 based on defect volume, severity impact, unresolved backlog, code fragility, and temporal recency).</p>
+
+<p class="report-para">The system features a responsive Streamlit dashboard with interactive Plotly visualizations, role-based access control (Admin, Tester, Developer), and a comprehensive test harness verified with automated Pytest suites.</p>
+
+<hr class="divider" />
+
+<h2 class="section-title">3. INTRODUCTION</h2>
+
+<p class="report-para">Software testing and defect management are foundational pillars of Software Engineering. According to IEEE Standard 610.12, a defect (or bug) is an imperfection or deficiency in a software work product where that product does not meet its specification or requirements. Left unmanaged, defects propagate through software delivery pipelines, compounding exponential remediation costs known as the Boehm Defect Cost Amplification model.</p>
+
+<p class="report-para">Traditional defect management systems (such as early bug trackers) predominantly focused on rudimentary record keeping—recording an issue, assigning it to an engineer, and marking it closed upon code commit. However, modern software engineering paradigms demand an integrated approach incorporating Orthogonal Defect Classification (ODC), continuous prevention retrospectives, strict lifecycle auditing, and predictive risk modeling.</p>
+
+<p class="report-para">The <strong>Software Defect Management and Prediction System</strong> was conceived and engineered to bridge the gap between academic software testing theory and industrial quality management. It unifies the entire defect lifecycle into an interactive, reliable, and user-centric platform.</p>
+
+<hr class="divider" />
+
+<h2 class="section-title">4. PROBLEM STATEMENT</h2>
+
+<p class="report-para">Academic software engineering curricula and real-world development teams encounter several acute challenges in defect management:
+1. <strong>Disjointed Defect Workflows:</strong> Defect discovery, resolution, and verification are often managed in disparate spreadsheets or basic forms lacking enforceable lifecycle constraints.
+2. <strong>Absence of Lifecycle Governance:</strong> Developers frequently mark defects "closed" without independent Quality Assurance (QA) retesting, causing premature closures and severe regression escapes.
+3. <strong>Reactive Rather Than Preventive:</strong> Teams repeatedly fix identical classes of bugs (e.g., authentication bypasses, race conditions, memory leaks) without identifying systemic failure patterns to prevent recurrence.
+4. <strong>Opaque or Fabricated Defect Prediction:</strong> Many academic prototypes claim machine learning capabilities by hardcoding mock statistics or applying unsuitable black-box models that cannot explain <em>why</em> a particular software module is dangerous.
+5. <strong>Lack of Audit Transparency:</strong> Changes to defect status, priority, or severity occur without timestamped historical records or accountability.</p>
+
+<hr class="divider" />
+
+<h2 class="section-title">5. OBJECTIVES</h2>
+
+<p class="report-para">The core objectives of this project are:
+1. <strong>To Implement all Six Core Concepts of Defect Management:</strong> Defect Prevention, Defect Discovery, Defect Recording and Reporting, Defect Classification, Defect Resolution, and Defect Prediction.
+2. <strong>To Enforce Role-Based Access Control (RBAC):</strong> Provide specialized views and authorized workflows for Admins, QA Testers, and Developers.
+3. <strong>To Enforce a Deterministic State Machine:</strong> Implement a strict lifecycle:  
+   <code>NEW</code> ➔ <code>ASSIGNED</code> ➔ <code>IN PROGRESS</code> ➔ <code>FIXED</code> ➔ <code>RETESTING</code> ➔ <code>CLOSED</code>  
+   with regression loops: <code>RETESTING</code> ➔ <code>REOPENED</code> ➔ <code>IN PROGRESS</code>.
+4. <strong>To Formulate an Explainable Risk Prediction Engine:</strong> Construct a multi-factor risk formula (0–100) reflecting defect volume, weighted severity, backlog debt, reopen rate, and recency velocity.
+5. <strong>To Enable Data-Driven Defect Prevention:</strong> Provide empirical pattern matching and actionable architectural recommendations derived directly from database records.
+6. <strong>To Maintain Production-Grade Software Quality:</strong> Ensure zero mock data dependencies during runtime, comprehensive error handling, persistent SQLite storage, and 100% passing automated test coverage.</p>
+
+<hr class="divider" />
+
+<h2 class="section-title">6. EXISTING SYSTEM</h2>
+
+<p class="report-para">Existing defect management solutions in academic and small-team settings typically exhibit the following characteristics:
+<ul class="report-list">
+<li><strong>Spreadsheet-Based Tracking (Excel/Google Sheets):</strong> Prone to data corruption, lacking relational referential integrity, devoid of automated ID generation, and vulnerable to unauthorized status overrides.</li>
+<li><strong>Static Frontend Prototypes:</strong> Web templates featuring hardcoded KPI counters and non-interactive static charts that do not interact with a backing database.</li>
+<li><strong>Complex Enterprise Platforms (Jira/Bugzilla):</strong> Feature heavy deployment overhead, high configuration complexity, closed source pricing models, and lack transparent academic defect prediction engines.</li>
+</ul></p>
+
+<hr class="divider" />
+
+<h2 class="section-title">7. PROPOSED SYSTEM</h2>
+
+<p class="report-para">The proposed <strong>Software Defect Management and Prediction System</strong> resolves the limitations of existing systems through a lightweight, self-contained, enterprise-grade architecture:
+<ul class="report-list">
+<li><strong>Instant Local Deployment:</strong> Zero cloud or complex server dependencies; runs locally on Windows, Linux, and Ubuntu with standard Python dependencies.</li>
+<li><strong>Relational Integrity:</strong> SQLite database with foreign keys, cascading rules, and B-Tree indexes.</li>
+<li><strong>Full Role-Based Workflows:</strong> Distinct UI flows for Admins, Testers, and Developers with an instant demo role switcher for academic presentations.</li>
+<li><strong>Dynamic Plotly Visualizations:</strong> Interactive donut charts, grouped bar charts, risk gauges, and timeline trend graphs connected to live database queries.</li>
+<li><strong>Explainable Prediction:</strong> Discloses factor contributions (Volume, Severity, Unresolved Debt, Reopens, Recency) for every module without opaque black boxes.</li>
+<li><strong>Automated Prevention:</strong> Pattern-matching engine that groups text keywords and defect taxonomy to formulate preventative engineering action plans.</li>
+</ul></p>
+
+<hr class="divider" />
+
+<h2 class="section-title">8. SYSTEM REQUIREMENTS</h2>
+
+<p class="report-para">The system is designed to be lean, cross-platform, and easily installable on any modern development workstation.</p>
+
+<hr class="divider" />
+
+<h2 class="section-title">9. HARDWARE REQUIREMENTS</h2>
+
+<ul class="report-list">
+<li><strong>Processor:</strong> Intel Core i3 / AMD Ryzen 3 or higher (Dual-Core 2.0 GHz minimum)</li>
+<li><strong>RAM:</strong> 4 GB RAM minimum (8 GB recommended for seamless browser rendering)</li>
+<li><strong>Storage:</strong> 500 MB free hard drive space (includes Python environment, SQLite database, and screenshot uploads)</li>
+<li><strong>Display:</strong> 1280 × 720 minimum resolution (1920 × 1080 recommended for dashboard charts)</li>
+<li><strong>Input:</strong> Standard keyboard and mouse / trackpad</li>
+</ul>
+
+<hr class="divider" />
+
+<h2 class="section-title">10. SOFTWARE REQUIREMENTS</h2>
+
+<ul class="report-list">
+<li><strong>Operating System:</strong> Microsoft Windows 10/11, Ubuntu 20.04/22.04 LTS, or macOS 12+</li>
+<li><strong>Programming Language:</strong> Python 3.10, 3.11, 3.12, 3.13, or 3.14</li>
+<li><strong>Database Engine:</strong> SQLite 3 (built into Python standard library)</li>
+<li><strong>Core Libraries:</strong></li>
+<li><code>streamlit>=1.35.0</code> (Reactive UI Framework)</li>
+<li><code>pandas>=2.0.0</code> (Data manipulation & aggregations)</li>
+<li><code>plotly>=5.20.0</code> (Interactive data visualization)</li>
+<li><code>pillow>=10.0.0</code> (Image validation for defect screenshot attachments)</li>
+<li><code>pytest>=8.0.0</code> (Automated unit and integration test framework)</li>
+<li><strong>Web Browser:</strong> Google Chrome, Mozilla Firefox, Microsoft Edge, or Safari</li>
+</ul>
+
+<hr class="divider" />
+
+<h2 class="section-title">11. SYSTEM ARCHITECTURE</h2>
+
+<p class="report-para">The application is structured into a 3-tier modular architecture:
+1. <strong>Presentation Tier:</strong> Streamlit UI components rendered through custom CSS styling (<code>assets/style.css</code>), providing interactive widgets, metric cards, forms, and Plotly charts.
+2. <strong>Application / Business Logic Tier:</strong>
+<ul class="report-list">
+<li><code>auth.py</code>: Authentication, credential hashing (SHA-256), and authorization permissions.</li>
+<li><code>defect_management.py</code>: Defect code sequencing, field validation, assignment triage, state machine enforcement, and audit history logging.</li>
+<li><code>prevention.py</code>: Recurring pattern analysis, high-risk module isolation, and prevention recommendations.</li>
+<li><code>prediction.py</code>: Multi-factor explainable risk scoring algorithm (0–100) and mitigation generation.</li>
+<li><code>analytics.py</code>: KPI calculations, chart generation, and CSV/report formatting.</li>
+</ul>
+3. <strong>Data Tier:</strong> SQLite relational database (<code>database/defects.db</code>) with relational integrity and performance indexes.</p>
+
+<hr class="divider" />
+
+<h2 class="section-title">12. MODULE DESCRIPTION</h2>
+
+<h3 class="subsection-title">Module 1: Defect Prevention (<code>prevention.py</code>)</h3>
+<ul class="report-list">
+<li><strong>Purpose:</strong> Identifies systemic root causes to prevent defect recurrence.</li>
+<li><strong>Mechanism:</strong> Analyzes the database to detect modules with multiple defects, calculates dominant defect types, and performs keyword pattern matching across defect descriptions (e.g., token expiration, deadlocks, boundary value errors, memory leaks).</li>
+<li><strong>Output:</strong> Categorized prevention recommendations, high-risk module flags, and downloadable Defect Prevention Action Plans (<code>.md</code>).</li>
+</ul>
+
+<h3 class="subsection-title">Module 2: Defect Discovery (<code>app.py</code>, <code>defect_management.py</code>)</h3>
+<ul class="report-list">
+<li><strong>Purpose:</strong> Standardized intake of newly uncovered software defects.</li>
+<li><strong>Fields Captured:</strong> Defect Title, Project Name, Module, Defect Type, Severity, Priority, Environment, Reporter, Timestamp, Detailed Description, Steps to Reproduce, Expected Result, Actual Result, and Screenshot Attachment.</li>
+<li><strong>Automation:</strong> Automatically validates non-empty inputs and generates unique sequential IDs (<code>BUG-0001</code>, <code>BUG-0002</code>, ...).</li>
+</ul>
+
+<h3 class="subsection-title">Module 3: Defect Recording and Reporting (<code>defect_management.py</code>, <code>analytics.py</code>)</h3>
+<ul class="report-list">
+<li><strong>Purpose:</strong> Long-term storage, querying, and reporting of all defect records.</li>
+<li><strong>Features:</strong> Multi-criteria filtering by Project, Module, Severity, Priority, and Lifecycle Status; free-text search across IDs and titles; detailed defect inspection; and one-click CSV data export.</li>
+</ul>
+
+<h3 class="subsection-title">Module 4: Defect Classification (<code>defect_management.py</code>)</h3>
+<ul class="report-list">
+<li><strong>Taxonomy:</strong></li>
+<li><strong>Severity:</strong> Critical, High, Medium, Low.</li>
+<li><strong>Priority:</strong> P1 - Urgent, P2 - High, P3 - Normal, P4 - Low.</li>
+<li><strong>Defect Type:</strong> Functional, Performance, Security, UI/UX, Compatibility, Database, Integration.</li>
+<li><strong>Features:</strong> Visual color-coded status badges, category breakdown charts, and an authorized reclassification tool with mandatory audit rationale logging.</li>
+</ul>
+
+<h3 class="subsection-title">Module 5: Defect Resolution (<code>defect_management.py</code>)</h3>
+<ul class="report-list">
+<li><strong>Purpose:</strong> Governs the end-to-end defect resolution lifecycle through an enforceable finite-state machine.</li>
+<li><strong>Lifecycle:</strong></li>
+</ul>
+  <code>NEW</code> ➔ <code>ASSIGNED</code> ➔ <code>IN PROGRESS</code> ➔ <code>FIXED</code> ➔ <code>RETESTING</code> ➔ <code>CLOSED</code>  
+  (Failure Loop: <code>RETESTING</code> ➔ <code>REOPENED</code> ➔ <code>IN PROGRESS</code>).
+<ul class="report-list">
+<li><strong>Audit Logging:</strong> Every state change records <code>previous_status</code>, <code>new_status</code>, <code>changed_by_id</code>, <code>timestamp</code>, and <code>comments</code> into <code>defect_history</code>.</li>
+</ul>
+
+<h3 class="subsection-title">Module 6: Defect Prediction (<code>prediction.py</code>)</h3>
+<ul class="report-list">
+<li><strong>Purpose:</strong> Quantifies software module risk probability before release.</li>
+<li><strong>Features:</strong> Evaluates five empirical software metrics to output a score from 0 to 100, maps the score to risk tiers (Low, Medium, High, Critical), displays a comparative ranking chart, provides an explainable factor breakdown, and suggests targeted mitigation steps.</li>
+</ul>
+
+<hr class="divider" />
+
+<h2 class="section-title">13. DATABASE DESIGN</h2>
+
+<p class="report-para">The relational schema is implemented in SQLite 3 with full 3NF normalization.</p>
+
+<h3 class="subsection-title">1. <code>users</code> Table</h3>
+<div class="table-container"><table class="report-table">
+<thead><tr>
+<th>Column</th>
+<th>Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr></thead><tbody>
+<tr>
+<td><code>id</code></td>
+</tr>
+</tbody></table></div> INTEGER | PRIMARY KEY AUTOINCREMENT | Unique user identifier |
+| <code>username</code> | TEXT | UNIQUE NOT NULL | User login username |
+| <code>password_hash</code> | TEXT | NOT NULL | Salted SHA-256 password hash |
+| <code>full_name</code> | TEXT | NOT NULL | User's full name |
+| <code>email</code> | TEXT | NOT NULL | Contact email address |
+| <code>role</code> | TEXT | NOT NULL CHECK (role IN ('Admin', 'Tester', 'Developer')) | Role-based authorization |
+| <code>created_at</code> | TEXT | NOT NULL | Account registration timestamp |
+
+<h3 class="subsection-title">2. <code>projects</code> Table</h3>
+<div class="table-container"><table class="report-table">
+<thead><tr>
+<th>Column</th>
+<th>Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr></thead><tbody>
+<tr>
+<td><code>id</code></td>
+</tr>
+</tbody></table></div> INTEGER | PRIMARY KEY AUTOINCREMENT | Unique project identifier |
+| <code>name</code> | TEXT | UNIQUE NOT NULL | Project title |
+| <code>description</code> | TEXT | NULL | Project scope summary |
+| <code>created_at</code> | TEXT | NOT NULL | Creation timestamp |
+
+<h3 class="subsection-title">3. <code>defects</code> Table</h3>
+<div class="table-container"><table class="report-table">
+<thead><tr>
+<th>Column</th>
+<th>Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr></thead><tbody>
+<tr>
+<td><code>id</code></td>
+</tr>
+</tbody></table></div> INTEGER | PRIMARY KEY AUTOINCREMENT | Primary surrogate key |
+| <code>defect_code</code> | TEXT | UNIQUE NOT NULL | Sequential code (e.g. BUG-0001) |
+| <code>project_name</code> | TEXT | NOT NULL | Associated project name |
+| <code>module</code> | TEXT | NOT NULL | Software subsystem/module |
+| <code>title</code> | TEXT | NOT NULL | Summary title of defect |
+| <code>description</code> | TEXT | NOT NULL | Detailed failure description |
+| <code>steps_to_reproduce</code>| TEXT | NULL | Step-by-step reproduction guide |
+| <code>expected_result</code> | TEXT | NULL | Expected normal behavior |
+| <code>actual_result</code> | TEXT | NULL | Observed abnormal behavior |
+| <code>defect_type</code> | TEXT | NOT NULL CHECK IN (...) | Technical taxonomy |
+| <code>severity</code> | TEXT | NOT NULL CHECK IN (...) | Critical, High, Medium, Low |
+| <code>priority</code> | TEXT | NOT NULL CHECK IN (...) | P1 - Urgent to P4 - Low |
+| <code>environment</code> | TEXT | NOT NULL | QA / Test, Staging, Production, Dev |
+| <code>screenshot_path</code> | TEXT | NULL | Uploaded image path on filesystem |
+| <code>reporter_id</code> | INTEGER | NOT NULL REFERENCES users(id) | QA Tester who discovered bug |
+| <code>assigned_to_id</code> | INTEGER | NULL REFERENCES users(id) | Developer assigned to resolve bug |
+| <code>status</code> | TEXT | NOT NULL DEFAULT 'NEW' | Current lifecycle stage |
+| <code>resolution_notes</code> | TEXT | NULL | Technical fix & root cause description |
+| <code>created_at</code> | TEXT | NOT NULL | Creation timestamp |
+| <code>updated_at</code> | TEXT | NOT NULL | Last modification timestamp |
+
+<h3 class="subsection-title">4. <code>assignments</code> Table</h3>
+<div class="table-container"><table class="report-table">
+<thead><tr>
+<th>Column</th>
+<th>Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr></thead><tbody>
+<tr>
+<td><code>id</code></td>
+</tr>
+</tbody></table></div> INTEGER | PRIMARY KEY AUTOINCREMENT | Assignment record ID |
+| <code>defect_id</code> | INTEGER | NOT NULL REFERENCES defects(id) | Target defect |
+| <code>assigned_by_id</code> | INTEGER | NOT NULL REFERENCES users(id) | Admin who made assignment |
+| <code>assigned_to_id</code> | INTEGER | NOT NULL REFERENCES users(id) | Developer assigned |
+| <code>assigned_at</code> | TEXT | NOT NULL | Timestamp of triage |
+| <code>notes</code> | TEXT | NULL | Instructions or sprint notes |
+
+<h3 class="subsection-title">5. <code>defect_history</code> Table</h3>
+<div class="table-container"><table class="report-table">
+<thead><tr>
+<th>Column</th>
+<th>Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr></thead><tbody>
+<tr>
+<td><code>id</code></td>
+</tr>
+</tbody></table></div> INTEGER | PRIMARY KEY AUTOINCREMENT | History log ID |
+| <code>defect_id</code> | INTEGER | NOT NULL REFERENCES defects(id) | Target defect |
+| <code>previous_status</code> | TEXT | NOT NULL | Source status |
+| <code>new_status</code> | TEXT | NOT NULL | Destination status |
+| <code>changed_by_id</code> | INTEGER | NOT NULL REFERENCES users(id) | Actor making change |
+| <code>comments</code> | TEXT | NULL | Audit comments / justification |
+| <code>timestamp</code> | TEXT | NOT NULL | Timestamp of event |
+
+<h3 class="subsection-title">Indexes:</h3>
+<ul class="report-list">
+<li><code>idx_defects_module</code> ON <code>defects(module)</code></li>
+<li><code>idx_defects_status</code> ON <code>defects(status)</code></li>
+<li><code>idx_defects_severity</code> ON <code>defects(severity)</code></li>
+<li><code>idx_defects_priority</code> ON <code>defects(priority)</code></li>
+<li><code>idx_defects_assigned</code> ON <code>defects(assigned_to_id)</code></li>
+<li><code>idx_history_defect</code> ON <code>defect_history(defect_id)</code></li>
+</ul>
+
+<hr class="divider" />
+
+<h2 class="section-title">14. WORKING METHODOLOGY</h2>
+
+<p class="report-para">The working methodology follows an agile quality engineering lifecycle:
+1. <strong>Defect Discovery Phase:</strong> QA Testers execute functional, boundary, security, or regression test cases. Upon detecting failure, the tester fills the discovery form with steps, expected/actual outputs, and screenshots.
+2. <strong>Triage & Assignment Phase:</strong> The QA Director / Admin reviews newly logged <code>NEW</code> defects, validates priority/severity, and assigns the defect to a designated Developer based on workload capacity.
+3. <strong>Investigation & Resolution Phase:</strong> The Developer investigates root causes in development, transitions the defect to <code>IN PROGRESS</code>, writes code patches, documents the resolution notes, and advances the defect to <code>FIXED</code>.
+4. <strong>Verification & Retesting Phase:</strong> The QA Tester pulls the fixed build into staging, advances the status to <code>RETESTING</code>, and executes regression suites. If verified, the tester marks it <code>CLOSED</code>. If failure recurs, it is transitioned to <code>REOPENED</code> with failure logs.
+5. <strong>Continuous Intelligence Phase:</strong> Prevention and prediction engines continuously query the SQLite database to identify recurring failure patterns and forecast module risk scores.</p>
+
+<hr class="divider" />
+
+<h2 class="section-title">15. DEFECT MANAGEMENT LIFECYCLE</h2>
+
+<p class="report-para">The system enforces the following formal finite-state machine:</p>
+
+<p class="report-para">$$\begin{aligned}
+\text{NEW} &\longrightarrow \text{ASSIGNED} \\
+\text{ASSIGNED} &\longrightarrow \text{IN PROGRESS} \\
+\text{IN PROGRESS} &\longrightarrow \text{FIXED} \\
+\text{FIXED} &\longrightarrow \text{RETESTING} \\
+\text{RETESTING} &\longrightarrow \text{CLOSED} \quad (\text{if verification passes}) \\
+\text{RETESTING} &\longrightarrow \text{REOPENED} \quad (\text{if verification fails}) \\
+\text{REOPENED} &\longrightarrow \text{IN PROGRESS} \\
+\text{CLOSED} &\longrightarrow \text{REOPENED} \quad (\text{if post-release regression occurs})
+\end{aligned}$$</p>
+
+<p class="report-para">Direct transitions that bypass QA verification (e.g., <code>NEW</code> ➔ <code>CLOSED</code> or <code>IN PROGRESS</code> ➔ <code>CLOSED</code>) are strictly blocked by validation logic.</p>
+
+<hr class="divider" />
+
+<h2 class="section-title">16. DEFECT PREDICTION ALGORITHM</h2>
+
+<h3 class="subsection-title">Academic Transparency Statement</h3>
+The prediction module implements an explainable, multi-factor defect risk scoring algorithm based on empirical Software Reliability Engineering (SRE) metrics. It does not use opaque black-box machine learning models, ensuring complete interpretability for academic examination.
+
+<h3 class="subsection-title">Mathematical Formulation</h3>
+For each software module $m$, the composite Risk Score $R_m \in [0, 100]$ is computed as:
+
+<p class="report-para">$$R_m = \min\left(100.0, \; \sum_{i=1}^{5} W_i \cdot S_i\right)$$</p>
+
+<p class="report-para">Where $\sum W_i = 1.0$:</p>
+
+<div class="table-container"><table class="report-table">
+<thead><tr>
+<th>Factor ($i$)</th>
+<th>Metric</th>
+<th>Weight ($W_i$)</th>
+<th>Normalized Sub-Score Formula ($S_i \in [0, 100]$)</th>
+</tr></thead><tbody>
+<tr>
+<td>1. Volume</td>
+</tr>
+</tbody></table></div> Total Defects ($D_m$) | 0.25 | $S_{\text{volume}} = \min\left(100.0, \frac{D_m}{5.0} \times 100.0\right)$ |
+| 2. Severity | Critical ($C_m$), High ($H_m$), Medium ($M_m$), Low ($L_m$) | 0.30 | $\text{Raw}_{\text{sev}} = 4.0 C_m + 2.5 H_m + 1.0 M_m + 0.25 L_m$<br>$S_{\text{severity}} = \min\left(100.0, \frac{\text{Raw}_{\text{sev}}}{10.0} \times 100.0\right)$ |
+| 3. Backlog Debt | Unresolved Defects ($U_m$) | 0.20 | $S_{\text{unresolved}} = \left(\frac{U_m}{D_m}\right) \times 100.0 \times \min\left(1.0, \frac{U_m}{2.0}\right)$ |
+| 4. Code Fragility | Reopened Defects ($R_m$) | 0.15 | $S_{\text{reopen}} = \min(100.0, R_m \times 50.0)$ |
+| 5. Recency | Defects in last 30 days ($\text{Rec}_m$) | 0.10 | $S_{\text{recency}} = \min\left(100.0, \frac{\text{Rec}_m}{3.0} \times 100.0\right)$ |
+
+<h3 class="subsection-title">Risk Tiers</h3>
+<ul class="report-list">
+<li><strong>0–29 (Low Risk):</strong> Standard automated unit and regression testing.</li>
+<li><strong>30–59 (Medium Risk):</strong> Enhanced integration testing and peer code reviews.</li>
+<li><strong>60–79 (High Risk):</strong> Mandatory QA regression cycle and senior developer review.</li>
+<li><strong>80–100 (Critical Risk):</strong> Block release; mandatory architectural audit and deep security/concurrency testing.</li>
+</ul>
+
+<hr class="divider" />
+
+<h2 class="section-title">17. IMPLEMENTATION</h2>
+
+<p class="report-para">The implementation is structured across seven dedicated Python source modules:
+<ul class="report-list">
+<li><code>database.py</code>: Handles SQLite connection pooling, schema initialization, salted password hashing, and idempotent sample data seeding.</li>
+<li><code>auth.py</code>: Implements authentication, credential verification, and RBAC helper functions.</li>
+<li><code>defect_management.py</code>: Enforces defect code sequencing (<code>BUG-XXXX</code>), validation, assignment, state transitions, and audit trail persistence.</li>
+<li><code>prevention.py</code>: Executes pattern clustering across titles and descriptions and generates preventive action items.</li>
+<li><code>prediction.py</code>: Implements the weighted risk-scoring formula and factor breakdown calculations.</li>
+<li><code>analytics.py</code>: Computes KPI metrics, renders Plotly visualizations, and generates CSV/printable reports.</li>
+<li><code>app.py</code>: Streamlit entrypoint providing sidebar navigation, responsive styling, and role switching.</li>
+</ul></p>
+
+<hr class="divider" />
+
+<h2 class="section-title">18. TESTING</h2>
+
+<p class="report-para">The project was verified through automated unit, integration, and lifecycle state-machine tests using <code>pytest</code>.</p>
+
+<h3 class="subsection-title">Test Summary:</h3>
+<ul class="report-list">
+<li><strong>Test Suite 1:</strong> <code>tests/test_database.py</code> (6 Tests)</li>
+<li>Schema creation, tables existence, index existence, deterministic password hashing, sample data seeding, and foreign key constraint enforcement.</li>
+<li><strong>Test Suite 2:</strong> <code>tests/test_defects.py</code> (10 Tests)</li>
+<li>Sequential code generation (<code>BUG-0017</code>), required field validation, invalid severity/priority/type rejection, assignment status update, complete 6-stage lifecycle progression, reopen loop, invalid transition rejection, developer permission enforcement, reclassification auditing, and CSV export.</li>
+<li><strong>Test Suite 3:</strong> <code>tests/test_prediction.py</code> (4 Tests)</li>
+<li>Risk score calculation boundedness ($0 \le R_m \le 100$), risk tier threshold validation, high-risk module ranking, and prevention pattern analysis.</li>
+</ul>
+
+<p class="report-para"><strong>Total Automated Tests:</strong> 20 Passed / 0 Failed (100% Pass Rate).</p>
+
+<hr class="divider" />
+
+<h2 class="section-title">19. RESULTS AND SCREENSHOTS</h2>
+
+<h3 class="subsection-title">Visual UI Architecture</h3>
+1. <strong>Executive Dashboard:</strong> Displays 6 top-level KPI cards (Total Defects, Open Defects, Resolved, Critical, Reopened, Resolution Rate) and 7 interactive Plotly charts (Severity Donut, Status Donut, Category Bar, Module Horizontal Bar, Monthly Trend Line, Developer Resolution Grouped Bar, and Predicted Risk Bar).
+2. <strong>Defect Discovery Screen:</strong> Form interface with input validation, rich text areas for reproduction steps, file uploader for screenshots, and immediate ID generation.
+3. <strong>Defect Inventory & Search:</strong> Real-time data table with five filter dropdowns, instant search, and an interactive Defect Detail Inspector displaying audit timelines and attached screenshots.
+4. <strong>Resolution Management Hub:</strong> Role-aware action station presenting allowed next status buttons, resolution note text areas, and a visual lifecycle breadcrumb.
+5. <strong>Defect Prevention Hub:</strong> Displays recurring pattern cards, high-risk module tables, automated prevention action items, and a one-click Markdown plan download.
+6. <strong>Defect Prediction Hub:</strong> Shows interactive module risk bar charts, tabular risk rankings, and an explainability matrix breaking down points added by Volume, Severity, Unresolved Backlog, Reopens, and Recency.
+
+<hr class="divider" />
+
+<h2 class="section-title">20. ADVANTAGES</h2>
+
+<p class="report-para">1. <strong>Academic Completeness:</strong> Covers all six concepts of Software Defect Management in one coherent application.
+2. <strong>Zero Deployment Barrier:</strong> No Docker, external SQL servers, or cloud dependencies required; runs out-of-the-box with <code>pip install</code> and <code>streamlit run</code>.
+3. <strong>Deterministic Governance:</strong> Impossible to bypass QA retesting or create orphaned defects.
+4. <strong>Full Traceability:</strong> Complete historical audit trail for every status, priority, and assignment change.
+5. <strong>Explainable AI/Analytics:</strong> High interpretability without black-box machine learning fallacies.
+6. <strong>Enterprise Design:</strong> Modern typography, status pill badges, and interactive Plotly charts.</p>
+
+<hr class="divider" />
+
+<h2 class="section-title">21. LIMITATIONS</h2>
+
+<p class="report-para">1. <strong>Local Single-Node Deployment:</strong> Uses SQLite, which is ideal for desktop evaluation, demonstration, and local teams, but would require PostgreSQL/MySQL for multi-tenant enterprise clustering.
+2. <strong>Rule-Based Prediction:</strong> While explainable and mathematically rigorous, it does not currently integrate deep NLP embeddings on unstructured bug descriptions.
+3. <strong>Simulated Email Notifications:</strong> Changes are recorded in database audit tables rather than dispatching real SMTP/Slack webhook notifications.</p>
+
+<hr class="divider" />
+
+<h2 class="section-title">22. FUTURE ENHANCEMENTS</h2>
+
+<p class="report-para">1. <strong>Jira & GitHub Issues Bi-directional Synchronization:</strong> Integrate REST APIs to sync defects with external enterprise trackers.
+2. <strong>NLP-Powered Duplicate Bug Detection:</strong> Implement Cosine Similarity with sentence-transformers to identify duplicate defect reports before submission.
+3. <strong>CI/CD Integration Webhooks:</strong> Automatically transition defect status to <code>FIXED</code> upon Git commit SHA references in GitHub/GitLab.
+4. <strong>Automated Flaky Test Detection:</strong> Integrate with Selenium/Playwright test runners to automatically log intermittent test failures.</p>
+
+<hr class="divider" />
+
+<h2 class="section-title">23. CONCLUSION</h2>
+
+<p class="report-para">The <strong>Software Defect Management and Prediction System</strong> successfully achieves all goals set forth in the project specification. It delivers a complete, fully functional, and academically rigorous software platform demonstrating Defect Prevention, Defect Discovery, Defect Recording and Reporting, Defect Classification, Defect Resolution, and Defect Prediction.</p>
+
+<p class="report-para">Backed by automated testing, clean database normalization, and a professional user interface, the project is completely ready for final academic evaluation, demonstration, and submission.</p>
+
+<hr class="divider" />
+
+<h2 class="section-title">24. REFERENCES</h2>
+
+<p class="report-para">1. IEEE Std 1044-2009: <em>IEEE Standard Classification for Software Anomalies</em>, IEEE Computer Society, 2010.
+2. IEEE Std 610.12-1990: <em>IEEE Standard Glossary of Software Engineering Terminology</em>, IEEE Standards Coordinating Committee, 1990.
+3. Pressman, R. S., & Maxim, B. R.: <em>Software Engineering: A Practitioner's Approach</em>, 9th Edition, McGraw-Hill Education, 2020.
+4. Chillarege, R., et al.: <em>Orthogonal Defect Classification — A Concept for In-Process Measurements</em>, IEEE Transactions on Software Engineering, Vol. 18, No. 11, pp. 943–956, Nov. 1992.
+5. Boehm, B. W.: <em>Software Engineering Economics</em>, Prentice-Hall, Englewood Cliffs, NJ, 1981.
+6. ISO/IEC/IEEE 29119-3:2021: <em>Software and systems engineering — Software testing — Part 3: Test documentation</em>, ISO/IEC, 2021.
+7. Streamlit Documentation: <em>A faster way to build and share data apps</em>, https://docs.streamlit.io/, 2026.
+8. Plotly Python Open Source Graphing Library: <em>Plotly Express and Graph Objects Reference</em>, https://plotly.com/python/, 2026.</p>
+
+
+    </div>
+</body>
+</html>

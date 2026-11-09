@@ -1,0 +1,262 @@
+/* Modern Enterprise Theme for Software Defect Management and Prediction System */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Metric / KPI Cards */
+.kpi-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 12px;
+}
+.kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.kpi-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #64748b;
+    margin-bottom: 6px;
+}
+.kpi-value {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.1;
+}
+.kpi-sub {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+/* Status Pill Badges */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+}
+.badge-critical { background-color: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+.badge-high { background-color: #ffedd5; color: #9a3412; border: 1px solid #fed7aa; }
+.badge-medium { background-color: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+.badge-low { background-color: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+
+.badge-new { background-color: #f1f5f9; color: #475569; }
+.badge-assigned { background-color: #e0f2fe; color: #0369a1; }
+.badge-inprogress { background-color: #dbeafe; color: #1d4ed8; }
+.badge-fixed { background-color: #d1fae5; color: #047857; }
+.badge-retesting { background-color: #ede9fe; color: #6d28d9; }
+.badge-reopened { background-color: #fce7f3; color: #be185d; }
+.badge-closed { background-color: #ecfdf5; color: #065f46; }
+
+/* Callout Box */
+.info-box {
+    background-color: #f8fafc;
+    border-left: 4px solid #3b82f6;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+    font-size: 0.9rem;
+    color: #334155;
+}
+
+.warning-box {
+    background-color: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+    font-size: 0.9rem;
+    color: #78350f;
+}
+
+.success-box {
+    background-color: #f0fdf4;
+    border-left: 4px solid #10b981;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+    font-size: 0.9rem;
+    color: #064e3b;
+}
+
+/* Timeline Item */
+.timeline-item {
+    border-left: 2px solid #cbd5e1;
+    padding-left: 16px;
+    margin-left: 8px;
+    margin-bottom: 16px;
+    position: relative;
+}
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #3b82f6;
+}
+
+/* User Card in Header */
+.user-pill {
+    background: #f1f5f9;
+    border-radius: 20px;
+    padding: 6px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+/* Professional Role Badges */
+.role-badge-admin {
+    background-color: #f3e8ff;
+    color: #6b21a8;
+    border: 1px solid #c4b5fd;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block;
+}
+
+.role-badge-tester {
+    background-color: #dbeafe;
+    color: #1e40af;
+    border: 1px solid #93c5fd;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block;
+}
+
+.role-badge-developer {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block;
+}
+
+/* Sidebar Dark Theme Enhancement */
+[data-testid="stSidebar"] {
+    background-color: #0f172a;
+    border-right: 1px solid #1e293b;
+}
+
+[data-testid="stSidebar"] .role-badge-admin {
+    background-color: #4c1d95;
+    color: #e9d5ff;
+    border: 1px solid #7c3aed;
+}
+
+[data-testid="stSidebar"] .role-badge-tester {
+    background-color: #1e3a8a;
+    color: #bfdbfe;
+    border: 1px solid #3b82f6;
+}
+
+[data-testid="stSidebar"] .role-badge-developer {
+    background-color: #064e3b;
+    color: #a7f3d0;
+    border: 1px solid #10b981;
+}
+
+/* User Profile Card */
+.sidebar-profile-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    transition: all 0.2s ease;
+}
+.sidebar-profile-card:hover {
+    border-color: #475569;
+}
+.sidebar-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.sidebar-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #334155;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+.sidebar-user-info {
+    flex: 1;
+    overflow: hidden;
+}
+.sidebar-fullname {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #f8fafc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.sidebar-username {
+    font-size: 0.76rem;
+    color: #94a3b8;
+    margin-bottom: 4px;
+}
+
+/* Sidebar Navigation Styling */
+[data-testid="stSidebar"] div[role="radiogroup"] > label {
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 3px;
+    color: #cbd5e1;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+[data-testid="stSidebar"] div[role="radiogroup"] > label:hover {
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+/* Dedicated Login Card */
+.login-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 28px 32px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    margin-bottom: 24px;
+}
+
