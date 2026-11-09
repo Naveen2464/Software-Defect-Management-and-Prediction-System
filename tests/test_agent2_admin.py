@@ -32,7 +32,7 @@ def test_admin_authentication_and_identity(admin_db):
     assert user is not None, "Admin login verification failed"
     assert user["username"] == "admin"
     assert user["role"] == "Admin"
-    assert user["full_name"].startswith("Sarah Jenkins")
+    assert user["full_name"].startswith("Naveen")
     assert "@" in user["email"]
 
 

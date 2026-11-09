@@ -1,6 +1,7 @@
-# Software Defect Management and Prediction System
+# 🛡️ Software Defect Management and Prediction System (DefectHub)
 
 A complete, enterprise-grade, fully functional academic project implementing the complete software quality engineering and defect management framework:
+
 1. **Defect Prevention** (pattern identification, root-cause recommendations, high-risk module isolation)
 2. **Defect Discovery** (validated defect reporting, auto-generated unique ID `BUG-XXXX`, screenshot attachments)
 3. **Defect Recording and Reporting** (persistent SQLite storage, multi-criteria filtering, CSV export)
@@ -16,7 +17,7 @@ A complete, enterprise-grade, fully functional academic project implementing the
 Ensure you have **Python 3.10+** installed on your workstation (Windows, Linux, Ubuntu, or macOS).
 
 ### 2. Install Dependencies
-Open your terminal or VS Code Command Prompt in the project folder and run:
+Open your terminal or Command Prompt in the project folder and run:
 
 ```bash
 pip install -r requirements.txt
@@ -29,7 +30,7 @@ Run the Streamlit application:
 streamlit run app.py
 ```
 
-The application will start immediately and automatically open your default web browser at:
+The application will start immediately and automatically open your default web browser at:  
 👉 **`http://localhost:8501`**
 
 ---
@@ -54,11 +55,13 @@ The system enforces end-to-end multi-tier Role-Based Access Control at both the 
 | **10. User Management** | ✅ Provision Users & Roles | ⛔ Restricted | ⛔ Restricted |
 | **11. About Project** | ✅ Full Access | ✅ Full Access | ✅ Full Access |
 
+---
+
 ### Predefined Demo Accounts:
 
 | Role | Username | Password | Full Name | Academic Capabilities |
 | :--- | :--- | :--- | :--- | :--- |
-| **Admin** | `admin` | `admin123` | Sarah Jenkins | Full system oversight, developer assignment, priority change, user provisioning |
+| **Admin** | `admin` | `admin123` | Naveen | Full system oversight, developer assignment, priority change, user provisioning |
 | **Tester** | `tester` | `tester123` | Alex Rivera | Report defects, upload screenshots, retest fixed builds, close/reopen |
 | **Tester 2** | `tester2` | `tester123` | Maya Lin | Report defects, verify fixes in QA staging |
 | **Developer 1** | `dev1` | `dev123` | David Kim | View assigned defects, transition to `IN PROGRESS`, mark `FIXED` with notes |
@@ -71,45 +74,24 @@ The system enforces end-to-end multi-tier Role-Based Access Control at both the 
 
 ## 🧪 Automated Testing
 
-All 29 unit, integration, RBAC, and lifecycle state-machine tests can be executed via Pytest:
+All **55 unit, integration, RBAC, lifecycle state-machine, and UI AppTest tests** pass with a 100% pass rate:
 
 ```bash
 pytest -v
 ```
 
-### Expected Output:
+### Test Suite Execution Summary:
 ```text
-tests/test_database.py::test_init_db_creates_all_tables PASSED           [  3%]
-tests/test_database.py::test_indexes_exist PASSED                        [  6%]
-tests/test_database.py::test_password_hashing PASSED                     [ 10%]
-tests/test_database.py::test_seed_sample_data PASSED                     [ 13%]
-tests/test_database.py::test_seed_sample_data_idempotency PASSED         [ 17%]
-tests/test_database.py::test_foreign_key_enforcement PASSED              [ 20%]
-tests/test_database.py::test_admin_user_management_permissions PASSED    [ 24%]
-tests/test_defects.py::test_generate_next_defect_code PASSED             [ 27%]
-tests/test_defects.py::test_create_defect_success PASSED                 [ 31%]
-tests/test_defects.py::test_create_defect_validation_errors PASSED       [ 34%]
-tests/test_defects.py::test_assign_defect PASSED                         [ 37%]
-tests/test_defects.py::test_complete_lifecycle_transitions PASSED        [ 41%]
-tests/test_defects.py::test_reopen_lifecycle_flow PASSED                 [ 44%]
-tests/test_defects.py::test_invalid_lifecycle_transition_rejected PASSED [ 48%]
-tests/test_defects.py::test_developer_cannot_close_defect PASSED         [ 51%]
-tests/test_defects.py::test_reclassification PASSED                      [ 55%]
-tests/test_defects.py::test_csv_export PASSED                            [ 58%]
-tests/test_prediction.py::test_predict_module_defects_structure PASSED   [ 62%]
-tests/test_prediction.py::test_risk_level_thresholds PASSED              [ 65%]
-tests/test_prediction.py::test_high_risk_ranking PASSED                  [ 68%]
-tests/test_prediction.py::test_prevention_pattern_analysis PASSED        [ 72%]
-tests/test_rbac.py::test_admin_has_access_to_all_11_pages PASSED         [ 75%]
-tests/test_rbac.py::test_tester_page_permissions PASSED                  [ 79%]
-tests/test_rbac.py::test_developer_page_permissions PASSED               [ 82%]
-tests/test_rbac.py::test_developer_can_only_modify_assigned_defects PASSED [ 86%]
-tests/test_rbac.py::test_developer_cannot_close_defects PASSED           [ 89%]
-tests/test_rbac.py::test_tester_retest_and_close_lifecycle PASSED        [ 93%]
-tests/test_rbac.py::test_tester_reopen_on_failed_retest PASSED           [ 96%]
-tests/test_rbac.py::test_backend_unauthorized_operations_rejected PASSED [100%]
+tests/test_agent2_admin.py (7 tests) ...................... PASSED [12%]
+tests/test_agent3_tester.py (7 tests) ..................... PASSED [25%]
+tests/test_agent4_developer.py (7 tests) .................. PASSED [38%]
+tests/test_database.py (7 tests) .......................... PASSED [50%]
+tests/test_defects.py (10 tests) .......................... PASSED [69%]
+tests/test_prediction.py (4 tests) ........................ PASSED [76%]
+tests/test_rbac.py (8 tests) .............................. PASSED [90%]
+tests/test_ui_apptest.py (5 tests) ........................ PASSED [100%]
 
-============================= 29 passed in 5.30s ==============================
+============================= 55 passed in 15.54s =============================
 ```
 
 ---
@@ -121,7 +103,7 @@ software_testing-assignment1/
 │
 ├── app.py                      # Main Streamlit dashboard & multi-page navigation
 ├── database.py                 # SQLite relational schema, indexing, and seed data loader
-├── auth.py                     # Authentication, salted SHA-256 password hashing & RBAC
+├── auth.py                     # Authentication, salted password verification & RBAC
 ├── defect_management.py        # Defect discovery, state-machine lifecycle, triage & audit
 ├── prevention.py               # Pattern discovery, repeated failure analysis & prevention plan
 ├── prediction.py               # Explainable multi-factor defect risk-scoring algorithm (0-100)
@@ -137,19 +119,21 @@ software_testing-assignment1/
 ├── assets/
 │   └── style.css               # Modern enterprise design & status pill badge styling
 │
-├── tests/                      # Automated Pytest suite (29 automated tests)
-│   ├── __init__.py
+├── tests/                      # Automated Pytest suite (55 automated tests)
+│   ├── test_agent2_admin.py
+│   ├── test_agent3_tester.py
+│   ├── test_agent4_developer.py
 │   ├── test_database.py
 │   ├── test_defects.py
 │   ├── test_prediction.py
-│   └── test_rbac.py
+│   ├── test_rbac.py
+│   └── test_ui_apptest.py
 │
 └── docs/                       # Complete Academic Documentation
     ├── project_report.md       # Full 24-section Academic Project Report
-    ├── project_report.html     # Beautiful interactive HTML submission report
+    ├── project_report.html     # Interactive HTML submission report
     ├── viva_defense_guide.md   # Comprehensive viva and oral defense guide
     └── system_architecture.md  # Architectural specification with Mermaid diagrams
-```
 ```
 
 ---
@@ -174,9 +158,9 @@ The application sidebar provides 11 dedicated functional pages:
 3. **All Defects:** Searchable and filterable registry with CSV export and an interactive detail inspector with history timelines.
 4. **Defect Classification:** IEEE 1044 / ISO 25010 taxonomy breakdown and authorized reclassification tool.
 5. **Assign Defects:** Workload balance chart and assignment triage interface for Admins.
-6. **Resolution Management:** Role-aware lifecycle action station enforcing the defect state machine:
+6. **Resolution Management:** Role-aware lifecycle action station enforcing the defect state machine:  
    `NEW` ➔ `ASSIGNED` ➔ `IN PROGRESS` ➔ `FIXED` ➔ `RETESTING` ➔ `CLOSED`  
-   (or `RETESTING` ➔ `REOPENED` ➔ `IN PROGRESS`).
+   *(or `RETESTING` ➔ `REOPENED` ➔ `IN PROGRESS`)*.
 7. **Defect Prevention:** Empirical pattern detection, high-risk module isolation, and downloadable action plans.
 8. **Defect Prediction:** Explainable risk-scoring algorithm with transparent factor contributions (Volume, Severity, Unresolved, Reopen, Recency).
 9. **Analytics & Reports:** Executive summary metrics, developer performance matrix, and downloadable reports.
@@ -190,6 +174,4 @@ The application sidebar provides 11 dedicated functional pages:
 Complete academic documentation is included inside the `docs/` directory:
 - **`docs/project_report.md`**: Complete 24-section formal academic project report formatted according to university standards.
 - **`docs/system_architecture.md`**: Full architectural specification featuring Mermaid flowcharts, state-machine diagrams, entity-relationship diagrams, and sequence flows.
-
-#   S o f t w a r e - D e f e c t - M a n a g e m e n t - a n d - P r e d i c t i o n - S y s t e m  
- 
+- **`docs/viva_defense_guide.md`**: Live presentation walkthrough and answers to the top 15 viva defense questions.

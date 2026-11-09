@@ -81,7 +81,7 @@ def render_login_page():
 
         qc1, qc2, qc3 = st.columns(3)
         with qc1:
-            if st.button("👑 Admin", use_container_width=True, help="Login as Sarah Jenkins (Admin)"):
+            if st.button("👑 Admin", use_container_width=True, help="Login as Naveen (Admin)"):
                 st.session_state["user"] = auth.get_user_by_username("admin")
                 st.rerun()
         with qc2:
@@ -1186,7 +1186,7 @@ elif selected_page == "User Management":
     st.markdown("""
     | Role | Username | Password | Full Name | Capabilities |
     | :--- | :--- | :--- | :--- | :--- |
-    | **Admin** | `admin` | `admin123` | Sarah Jenkins | View all, assign defects, modify priority, oversight |
+    | **Admin** | `admin` | `admin123` | Naveen | View all, assign defects, modify priority, oversight |
     | **Tester** | `tester` | `tester123` | Alex Rivera | Report defects, upload screenshots, retest, close/reopen |
     | **Tester 2** | `tester2` | `tester123` | Maya Lin | Report defects, retest and verify fixes |
     | **Developer 1** | `dev1` | `dev123` | David Kim | View assigned, update to IN PROGRESS / FIXED, notes |

@@ -176,7 +176,7 @@ def seed_sample_data(db_path: str = None, force: bool = False):
 
     # 1. Seed Users
     users_data = [
-        ("admin", hash_password("admin123"), "Sarah Jenkins (QA Director)", "admin@defects.io", "Admin", (now - timedelta(days=90)).strftime("%Y-%m-%d %H:%M:%S")),
+        ("admin", hash_password("admin123"), "Naveen (QA Director)", "admin@defects.io", "Admin", (now - timedelta(days=90)).strftime("%Y-%m-%d %H:%M:%S")),
         ("tester", hash_password("tester123"), "Alex Rivera (Lead QA)", "alex.tester@defects.io", "Tester", (now - timedelta(days=90)).strftime("%Y-%m-%d %H:%M:%S")),
         ("tester2", hash_password("tester123"), "Maya Lin (QA Specialist)", "maya.tester@defects.io", "Tester", (now - timedelta(days=85)).strftime("%Y-%m-%d %H:%M:%S")),
         ("dev1", hash_password("dev123"), "David Kim (Senior Backend)", "david.kim@defects.io", "Developer", (now - timedelta(days=90)).strftime("%Y-%m-%d %H:%M:%S")),
